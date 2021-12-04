@@ -1,17 +1,21 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "kotlin-parcelize"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
-    compileSdk 31
+    compileSdk androidCompileSdk
+    buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
         applicationId "com.vesync.wanandroid"
-        minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
+        versionCode project.currentVersionCode
+        versionName project.currentVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,15 +39,87 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
+
+    //compose插件
+    implementation "androidx.compose.ui:ui:$compose_version"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    // Material Design
+    implementation "androidx.compose.material:material:$compose_version"
+    // Material design icons
+    implementation 'androidx.compose.material:material-icons-core:1.0.5'
+    implementation 'androidx.compose.material:material-icons-extended:1.0.5'
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    // Integration with ViewModels
+
+    // Integration with observables
+    implementation 'androidx.compose.runtime:runtime-livedata:1.0.5'
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.5'
+
+    //lifecycle插件
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModel_compose_version"
+
+    /** accompanist辅助插件 */
+    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-coil:0.15.0"
+    //系统ui控制器
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+    //glide
+    implementation "com.google.accompanist:accompanist-glide:$constraint_glideversion"
+    //viewPager
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+    //下拉刷新
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+    //流式布局
+    implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_version"
+    //placeholder
+    implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist_version"
+    //implementation "com.google.accompanist:accompanist-placeholder:$accompanistVersion"
+
+    //约束布局
+    implementation "androidx.constraintlayout:constraintlayout-compose:$constraint_compose_version"
+    //协程
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutineAdapter_version"
+
+    //网络库
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    //hilt inject framework
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_compose_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_compose_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_compiler_version"
+
+    //paging分页库
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    testImplementation "androidx.paging:paging-common:$paging_version"
+    implementation "androidx.paging:paging-compose:$paging_compose_version"
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
