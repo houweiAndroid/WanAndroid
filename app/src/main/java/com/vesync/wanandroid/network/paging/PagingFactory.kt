@@ -5,7 +5,6 @@ import androidx.paging.PagingConfig
 class PagingFactory {
 
     val pagingConfig = PagingConfig(
-
         // 每页显示的数据的大小
         pageSize = 10,
         //开启占位符
