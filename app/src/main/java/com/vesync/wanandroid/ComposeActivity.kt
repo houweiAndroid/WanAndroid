@@ -7,6 +7,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,7 +23,9 @@ class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(Message("Android", "Jetpack"))
+            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
+                MessageCard(Message("Android", "Jetpack"))
+            }
         }
     }
 
@@ -39,7 +43,7 @@ class ComposeActivity : ComponentActivity() {
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape),
-                painter = painterResource(R.drawable.ic_launcher_foreground),
+                painter = painterResource(R.drawable.ic_dashboard_black_24dp),
                 contentDescription = "Contact profile picture",
             )
 
@@ -52,7 +56,7 @@ class ComposeActivity : ComponentActivity() {
 
     }
 
-    @Preview
+    @Preview(name = "Dark Mode")
     @Composable
     fun DefaultPreviewMessageCard() {
         MessageCard(Message("Android", "Jetpack"))
